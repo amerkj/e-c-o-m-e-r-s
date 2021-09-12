@@ -1,50 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>home</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/homw">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/cart">cart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/orders">orders</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/singup">signup</a>
-              </li>
+<%- include('parts/header')%>
+<%- include('parts/navbar')%>
 
-              <li class="nav-item">
-                <a class="nav-link" href="/admin/add">add product</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/admin/orders">manage order</a>
-              </li>
-              
-          </div>
+<div class ="container">
+  <div class="row">
+     <% for(let product of products) { %>
+      
+     <div class="col col-12 col-md-6 col-lg-4 col-xl-3">
+
+      <div class="card" style="width: 18rem;">
+        <img src="<%= product.image%>" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="/product/<%= product._id %>"><%= product.name %></a>
+            <p>Price: <%=product.price%> $</p>
+          </h5>
+          <form action="/cart" method="POST">
+            <input type="number" name="amount" class="form-control">
+            <input type="submet" value="add to cad" class="btn btn-primary">
+          </form>
         </div>
-      </nav>
+      </div>
+  </div>
 
-
-    <script src="/js/bootstrap.min.js"></script>
-    <script scr ="/js/popper.main.js"></script>
-    <script scr ="jquery.min.js"></script>
-</body>
-</html>
+     </div>
+      
+      <% } %>
+</div>
+</div>
+<%- include('parts/footer')%>
